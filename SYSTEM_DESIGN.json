@@ -1,0 +1,253 @@
+{
+  "summary": "A robust, enterprise-grade User Management System translating traditional Java/Spring concepts into a modern Next.js architecture. Features comprehensive Role-Based Access Control (RBAC), JWT authentication, secure API endpoints with validation, and a high-performance dashboard for managing users and subscriptions.",
+  "designSeed": "secure-usermgmt-v1",
+  "projectType": "full-stack",
+  "needsAuth": true,
+  "authReasoning": "This is explicitly a 'User Management System'. It requires distinct 'Admin' (manager) and 'User' (consumer) roles to demonstrate the requested Role-Based Authorization. Security is the core product feature.",
+  "features": [
+    "JWT-based Authentication & Session Management",
+    "Role-Based Access Control (RBAC: Admin vs User)",
+    "Server-side Pagination & Filtering for User Lists",
+    "Zod Schema Validation (DTO equivalent)",
+    "Global Error Handling & Toast Notifications",
+    "Mock Payment & SMS Gateway Integration UI",
+    "Audit Logging for Security Events"
+  ],
+  "layoutStyle": "Split-screen Dashboard: Left sidebar navigation for logged-in areas, Scroll Narrative for public landing page.",
+  "colorMood": "High-contrast Security: Clean white backgrounds with sharp gray borders and high-energy Pink (#F2185D) accents for alerts and primary actions.",
+  "primaryColor": "#F2185D",
+  "colorPalette": [
+    "#1FAC7F",
+    "#1DC791",
+    "#EF9618",
+    "#EAF11C",
+    "#8CF21F"
+  ],
+  "animationStyle": "Micro-interactions: Smooth table row transitions, modal scaling, and button press effects.",
+  "uiPrompt": "Create a professional, security-focused UI. Cards must use 'border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300'. Primary buttons should be 'bg-[#F2185D] text-white shadow-sm shadow-[#F2185D]/25 hover:shadow-md hover:brightness-110 rounded-lg px-6 py-2.5'. Input fields require 'border border-gray-300 rounded-lg px-4 py-2 focus:border-[#F2185D] focus:ring-2 focus:ring-[#F2185D]/20 outline-none transition-all'. Tables must be 'border border-gray-200 rounded-xl overflow-hidden' with 'divide-y divide-gray-100' and 'hover:bg-gray-50' on rows. Use 'border-l-4 border-[#F2185D]' for alert cards or active navigation states. All interactive elements must have hover states.",
+  "models": [
+    {
+      "name": "User",
+      "file": "src/models/User.ts",
+      "fields": [
+        "name: String",
+        "email: String (unique)",
+        "password: String (hashed)",
+        "role: String (enum: 'admin', 'user')",
+        "status: String (enum: 'active', 'suspended')",
+        "phoneNumber: String",
+        "subscriptionStatus: String",
+        "lastLogin: Date"
+      ]
+    },
+    {
+      "name": "AuditLog",
+      "file": "src/models/AuditLog.ts",
+      "fields": [
+        "action: String",
+        "performedBy: ObjectId (ref: User)",
+        "targetResource: String",
+        "details: String",
+        "timestamp: Date"
+      ]
+    }
+  ],
+  "apiRoutes": [
+    {
+      "method": "POST",
+      "path": "/api/auth/register",
+      "file": "src/app/api/auth/register/route.ts",
+      "description": "Registers new user with Zod validation and password hashing"
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "file": "src/app/api/auth/login/route.ts",
+      "description": "Validates credentials and issues JWT"
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "file": "src/app/api/users/route.ts",
+      "description": "Paginated list of users with filtering (Admin only)"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/users/[id]",
+      "file": "src/app/api/users/[id]/route.ts",
+      "description": "Update user details or status (Admin/Self)"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/[id]",
+      "file": "src/app/api/users/[id]/route.ts",
+      "description": "Soft delete or ban user (Admin only)"
+    },
+    {
+      "method": "GET",
+      "path": "/api/stats",
+      "file": "src/app/api/stats/route.ts",
+      "description": "Dashboard statistics (total users, active subscriptions)"
+    }
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "file": "src/app/page.tsx",
+      "description": "Public landing page explaining the security features of the system",
+      "crud": [],
+      "usesApi": [],
+      "isProtected": false,
+      "requiredRole": null
+    },
+    {
+      "path": "/login",
+      "file": "src/app/(auth)/login/page.tsx",
+      "description": "Secure login form with validation",
+      "crud": [],
+      "usesApi": [
+        "/api/auth/login"
+      ],
+      "isProtected": false,
+      "requiredRole": null
+    },
+    {
+      "path": "/register",
+      "file": "src/app/(auth)/register/page.tsx",
+      "description": "Registration form with Zod validation",
+      "crud": [
+        "create"
+      ],
+      "usesApi": [
+        "/api/auth/register"
+      ],
+      "isProtected": false,
+      "requiredRole": null
+    },
+    {
+      "path": "/dashboard",
+      "file": "src/app/(dashboard)/dashboard/page.tsx",
+      "description": "Overview of account status and recent activity",
+      "crud": [
+        "read"
+      ],
+      "usesApi": [
+        "/api/stats",
+        "/api/auth/me"
+      ],
+      "isProtected": true,
+      "requiredRole": "user"
+    },
+    {
+      "path": "/users",
+      "file": "src/app/(dashboard)/users/page.tsx",
+      "description": "ADMIN ONLY: Full CRUD table for managing users (pagination, search, delete)",
+      "crud": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "usesApi": [
+        "/api/users"
+      ],
+      "isProtected": true,
+      "requiredRole": "admin"
+    },
+    {
+      "path": "/settings",
+      "file": "src/app/(dashboard)/settings/page.tsx",
+      "description": "User profile settings, SMS preferences, and subscription status",
+      "crud": [
+        "read",
+        "update"
+      ],
+      "usesApi": [
+        "/api/users/[id]"
+      ],
+      "isProtected": true,
+      "requiredRole": "user"
+    }
+  ],
+  "authSystem": {
+    "provider": "src/contexts/AuthContext.tsx",
+    "hook": "src/hooks/useAuth.ts",
+    "middleware": "src/middleware.ts",
+    "protectedWrapper": "src/components/ProtectedRoute.tsx"
+  },
+  "components": [
+    {
+      "name": "UserTable",
+      "file": "src/components/UserTable.tsx",
+      "description": "Complex data table with pagination controls, sorting, and row actions",
+      "usesApi": [
+        "/api/users"
+      ]
+    },
+    {
+      "name": "RoleBadge",
+      "file": "src/components/RoleBadge.tsx",
+      "description": "Visual indicator for Admin vs User roles with distinct colors",
+      "usesApi": []
+    },
+    {
+      "name": "StatusToggle",
+      "file": "src/components/StatusToggle.tsx",
+      "description": "Switch component to activate/suspend users instantly",
+      "usesApi": [
+        "/api/users/[id]"
+      ]
+    },
+    {
+      "name": "PaymentModal",
+      "file": "src/components/PaymentModal.tsx",
+      "description": "Mock payment gateway integration UI (Sandbox mode)",
+      "usesApi": []
+    }
+  ],
+  "contentAreas": [
+    {
+      "order": 1,
+      "name": "Hero Section",
+      "description": "Headline: 'Enterprise-Grade User Management'. Subhead: 'Secure, Scalable, and Ready for Deployment.' CTA: 'Access Dashboard'"
+    },
+    {
+      "order": 2,
+      "name": "Security Features",
+      "description": "Grid cards detailing JWT Implementation, RBAC Architecture, and Encrypted Data Storage."
+    },
+    {
+      "order": 3,
+      "name": "Tech Stack",
+      "description": "Showcase the modern migration: Next.js 15, Tailwind, and MongoDB (replacing legacy Java stack)."
+    },
+    {
+      "order": 4,
+      "name": "Integration Capabilities",
+      "description": "Visuals showing SMS Notification and Payment Gateway support."
+    },
+    {
+      "order": 5,
+      "name": "System Stats",
+      "description": "Counter animation showing '99.9% Uptime', 'Zero Breaches', 'Fast API Response'."
+    }
+  ],
+  "tailwindColors": {
+    "primary": "rose-600",
+    "primaryForeground": "white",
+    "secondary": "emerald-500",
+    "secondaryForeground": "gray-900",
+    "accent": "amber-500",
+    "accentForeground": "white",
+    "background": "white",
+    "foreground": "gray-900",
+    "muted": "gray-100",
+    "mutedForeground": "gray-500",
+    "card": "white",
+    "cardForeground": "gray-900",
+    "border": "gray-200",
+    "destructive": "red-500",
+    "destructiveForeground": "white",
+    "isDark": false
+  }
+}

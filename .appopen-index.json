@@ -1,0 +1,294 @@
+{
+  "projectId": "proj_1770201752474_hta6j3052",
+  "rootPath": "/mnt/data/appopen-projects/6983228f591e447c6a9eb6e3",
+  "files": {
+    ".gitignore": {
+      "path": ".gitignore",
+      "language": "unknown",
+      "size": 554,
+      "lines": 58,
+      "hash": "600a4b0cc868e80a55161030718935d2",
+      "lastIndexed": "2026-02-04T10:42:32.476Z",
+      "exports": [],
+      "imports": [],
+      "tags": []
+    },
+    "eslint.config.mjs": {
+      "path": "eslint.config.mjs",
+      "language": "unknown",
+      "size": 524,
+      "lines": 26,
+      "hash": "f1e80e839db34357a0e228efe227e759",
+      "lastIndexed": "2026-02-04T10:42:32.476Z",
+      "exports": [],
+      "imports": [],
+      "tags": [
+        "config"
+      ]
+    },
+    "next.config.ts": {
+      "path": "next.config.ts",
+      "language": "typescript",
+      "size": 1135,
+      "lines": 52,
+      "hash": "1c654956f7536ae90ef22b589e266d29",
+      "lastIndexed": "2026-02-04T10:42:32.476Z",
+      "exports": [],
+      "imports": [
+        "next",
+        "path",
+        "url"
+      ],
+      "tags": [
+        "config"
+      ]
+    },
+    "package.json": {
+      "path": "package.json",
+      "language": "json",
+      "size": 1475,
+      "lines": 58,
+      "hash": "dd348615d8d586805702450597ca142a",
+      "lastIndexed": "2026-02-04T10:42:32.477Z",
+      "exports": [],
+      "imports": [],
+      "tags": [
+        "auth"
+      ]
+    },
+    "postcss.config.mjs": {
+      "path": "postcss.config.mjs",
+      "language": "unknown",
+      "size": 81,
+      "lines": 6,
+      "hash": "675899342e765a4d16acd75a53389101",
+      "lastIndexed": "2026-02-04T10:42:32.478Z",
+      "exports": [],
+      "imports": [],
+      "tags": [
+        "config"
+      ]
+    },
+    "src/app/error.tsx": {
+      "path": "src/app/error.tsx",
+      "language": "typescript-react",
+      "size": 319,
+      "lines": 15,
+      "hash": "f58882596e8aef7d7415fe3b1065a3b4",
+      "lastIndexed": "2026-02-04T10:42:32.478Z",
+      "exports": [
+        "default:GlobalError"
+      ],
+      "imports": [
+        "@/components/ErrorReporter"
+      ],
+      "tags": [
+        "page",
+        "client-component",
+        "default-export"
+      ]
+    },
+    "src/app/favicon.ico": {
+      "path": "src/app/favicon.ico",
+      "language": "unknown",
+      "size": 39535,
+      "lines": 31,
+      "hash": "b7e5d143f696329db9b04f047c8ba284",
+      "lastIndexed": "2026-02-04T10:42:32.479Z",
+      "exports": [],
+      "imports": [],
+      "tags": [
+        "page"
+      ]
+    },
+    "src/app/globals.css": {
+      "path": "src/app/globals.css",
+      "language": "css",
+      "size": 245,
+      "lines": 13,
+      "hash": "d2575375b1e13b12beb94d7a04f8bfc9",
+      "lastIndexed": "2026-02-04T10:42:32.480Z",
+      "exports": [],
+      "imports": [],
+      "tags": [
+        "page",
+        "styles"
+      ]
+    },
+    "src/app/layout.tsx": {
+      "path": "src/app/layout.tsx",
+      "language": "typescript-react",
+      "size": 1707,
+      "lines": 48,
+      "hash": "7551fb4f428c8e7c63ab4a4e3bd44f9b",
+      "lastIndexed": "2026-02-04T10:42:32.480Z",
+      "exports": [
+        "metadata",
+        "default:RootLayout"
+      ],
+      "imports": [
+        "next",
+        "next/font/google",
+        "@/visual-edits/VisualEditsMessenger",
+        "@/components/ErrorReporter",
+        "@/components/NavigationTracker",
+        "@/components/StorageAccessHelper",
+        "next/script"
+      ],
+      "tags": [
+        "page",
+        "default-export"
+      ]
+    },
+    "src/app/page.tsx": {
+      "path": "src/app/page.tsx",
+      "language": "typescript-react",
+      "size": 708,
+      "lines": 23,
+      "hash": "948191cf46e9a1ba851dca8925ad3632",
+      "lastIndexed": "2026-02-04T10:42:32.480Z",
+      "exports": [
+        "default:Home"
+      ],
+      "imports": [],
+      "tags": [
+        "page",
+        "default-export"
+      ]
+    },
+    "src/components/ErrorReporter.tsx": {
+      "path": "src/components/ErrorReporter.tsx",
+      "language": "typescript-react",
+      "size": 10236,
+      "lines": 307,
+      "hash": "ee334d0e6f3ac9c9128eab9b18bac86f",
+      "lastIndexed": "2026-02-04T10:42:32.481Z",
+      "exports": [
+        "default:ErrorReporter"
+      ],
+      "imports": [
+        "react",
+        "lucide-react"
+      ],
+      "tags": [
+        "component",
+        "client-component",
+        "stateful",
+        "default-export",
+        "auth"
+      ]
+    },
+    "src/components/NavigationTracker.tsx": {
+      "path": "src/components/NavigationTracker.tsx",
+      "language": "typescript-react",
+      "size": 2574,
+      "lines": 80,
+      "hash": "fae589acdea614a53aedbb6c79232c86",
+      "lastIndexed": "2026-02-04T10:42:32.481Z",
+      "exports": [
+        "default:NavigationTracker"
+      ],
+      "imports": [
+        "react",
+        "next/navigation"
+      ],
+      "tags": [
+        "component",
+        "client-component",
+        "stateful",
+        "default-export"
+      ]
+    },
+    "src/components/StorageAccessHelper.tsx": {
+      "path": "src/components/StorageAccessHelper.tsx",
+      "language": "typescript-react",
+      "size": 6866,
+      "lines": 179,
+      "hash": "5fae20f3d90d615521dd81a424c5905f",
+      "lastIndexed": "2026-02-04T10:42:32.482Z",
+      "exports": [
+        "default:StorageAccessHelper"
+      ],
+      "imports": [
+        "react"
+      ],
+      "tags": [
+        "component",
+        "client-component",
+        "stateful",
+        "default-export",
+        "auth"
+      ]
+    },
+    "src/lib/utils.ts": {
+      "path": "src/lib/utils.ts",
+      "language": "typescript",
+      "size": 166,
+      "lines": 7,
+      "hash": "ea1c194ee828369e6fcdde84b4d8b8ba",
+      "lastIndexed": "2026-02-04T10:42:32.482Z",
+      "exports": [
+        "cn"
+      ],
+      "imports": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "tags": [
+        "util"
+      ]
+    },
+    "src/visual-edits/VisualEditsMessenger.tsx": {
+      "path": "src/visual-edits/VisualEditsMessenger.tsx",
+      "language": "typescript-react",
+      "size": 37499,
+      "lines": 992,
+      "hash": "af370fcb8780f66e848409232dc415b2",
+      "lastIndexed": "2026-02-04T10:42:32.483Z",
+      "exports": [
+        "default:VisualEditsMessenger"
+      ],
+      "imports": [
+        "react"
+      ],
+      "tags": [
+        "client-component",
+        "stateful",
+        "default-export"
+      ]
+    },
+    "src/visual-edits/component-tagger-loader.js": {
+      "path": "src/visual-edits/component-tagger-loader.js",
+      "language": "javascript",
+      "size": 3065,
+      "lines": 100,
+      "hash": "0418feadfccb2a6cd01b89cf024df3ac",
+      "lastIndexed": "2026-02-04T10:42:32.484Z",
+      "exports": [
+        "default:componentTaggerLoader"
+      ],
+      "imports": [
+        "@babel/parser",
+        "estree-walker"
+      ],
+      "tags": [
+        "default-export"
+      ]
+    },
+    "tsconfig.json": {
+      "path": "tsconfig.json",
+      "language": "json",
+      "size": 602,
+      "lines": 28,
+      "hash": "0cf97a81150d3b8904f285780896980d",
+      "lastIndexed": "2026-02-04T10:42:32.484Z",
+      "exports": [],
+      "imports": [],
+      "tags": [
+        "config"
+      ]
+    }
+  },
+  "lastFullScan": "2026-02-04T10:42:32.484Z",
+  "version": 1
+}
